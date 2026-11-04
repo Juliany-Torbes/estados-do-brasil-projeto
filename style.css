@@ -1,0 +1,228 @@
+/* 1. A base */
+:root {
+    --cor-fundo: #f3f5f8;
+    --cor-cartao: #ffffff;
+    --cor-texto: #1f2933;
+    --cor-suave: #64707d;
+    --cor-borda: #dce2e8;
+    --cor-principal: #1d4e89;
+    --cor-erro: #c92a2a;
+    --cor-favorito: #e8a200;
+    --cor-esqueleto: #e2e7ec;
+    --cor-norte: #2b8a3e;
+    --cor-nordeste: #e8590c;
+    --cor-centro-oeste: #c2255c;
+    --cor-sudeste: #1971c2;
+    --cor-sul: #6741d9;
+}
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    background-color: var(--cor-fundo);
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--cor-texto);
+}
+.topo { 
+   padding: 28px 20px; 
+   background-color: var(--cor-principal); 
+   color: #fff; text-align: center; }
+.topo h1 { 
+   margin: 0; f
+   ont-size: 32px; }
+.subtitulo { 
+   margin: 4px 0 0 0; 
+   opacity: 0.85; }
+.conteudo { 
+   max-width: 1100px; 
+   margin: 0 auto; 
+   padding: 20px; }
+.rodape { 
+   padding: 8px 20px 24px; 
+   color: var(--cor-suave); 
+   font-size: 14px; 
+   text-align: center; }
+
+/* 2. Grades e filtros */
+.lista-de-estados {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 0; 
+    padding: 0; l
+   list-style: none;
+}
+.filtros {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+.filtros p { margin: 0; }
+label { display: block; margin-bottom: 4px; font-weight: bold; }
+input, select {
+    width: 100%; padding: 10px 12px;
+    border: 1px solid var(--cor-borda); 
+    border-radius: 8px;
+    background-color: var(--cor-cartao); 
+    color: var(--cor-texto); font-size: 16px;
+}
+input:focus-visible, select:focus-visible, button:focus-visible {
+    outline: 3px solid var(--cor-principal); 
+    outline-offset: 1px;
+}
+
+/* 3. Botões de região e favoritos */
+.barra { 
+   display: flex;
+   flex-wrap: wrap; 
+   justify-content: 
+   space-between; 
+   gap: 12px; 
+   margin-top: 20px; 
+}
+.regioes { 
+   display: flex; 
+   flex-wrap: wrap; 
+   gap: 8px; 
+}
+button { 
+   font-size: 15px; 
+   cursor: pointer; 
+}
+.botao-regiao, .botao-favoritos {
+    padding: 8px 14px;
+    border: 1px solid var(--cor-borda); 
+    border-radius: 999px;
+    background-color: var(--cor-cartao); 
+    color: var(--cor-texto);
+}
+.botao-regiao.ativo, .botao-favoritos.ativo {
+    background-color: var(--cor-principal); 
+    border-color: var(--cor-principal); 
+    color: #fff;
+}
+
+/* 4. O card: a cor vem da variável --cor-regiao */
+.estado {
+    --cor-regiao: var(--cor-principal);
+    display: flex; flex-direction: column;
+    min-height: 120px; padding: 16px;
+    border: 1px solid var(--cor-borda);
+    border-top: 6px solid var(--cor-regiao);
+    border-radius: 10px;
+    background-color: var(--cor-cartao);
+}
+.estado[data-regiao="Norte"] { 
+   --cor-regiao: var(--cor-norte);
+   .botao-municipios {
+    padding: 8px 12px; 
+    border: 1px solid var(--cor-norte); 
+    border-radius: 8px;
+    background-color: var(--cor-cartao); 
+    color: var(--cor-norte);
+}
+ }
+.estado[data-regiao="Nordeste"] { 
+   --cor-regiao: var(--cor-nordeste);
+   .botao-municipios {
+    padding: 8px 12px; 
+    border: 1px solid var(--cor-nordeste); 
+    border-radius: 8px;
+    background-color: var(--cor-cartao); 
+    color: var(--cor-nordeste);
+}
+ }
+.estado[data-regiao="Centro-Oeste"] { 
+   --cor-regiao: var(--cor-centro-oeste);
+   
+   .botao-municipios {
+    padding: 8px 12px; 
+    border: 1px solid var(--cor-centro-oeste); 
+    border-radius: 8px;
+    background-color: var(--cor-cartao); 
+    color: var(--cor-centro-oeste);
+}
+ }
+.estado[data-regiao="Sudeste"] { 
+   --cor-regiao: var(--cor-sudeste);
+   .botao-municipios {
+    padding: 8px 12px; 
+    border: 1px solid var(--cor-sudeste); 
+    border-radius: 8px;
+    background-color: var(--cor-cartao); 
+    color: var(--cor-sudeste);
+}
+}
+.estado[data-regiao="Sul"] { 
+   --cor-regiao: var(--cor-sul); 
+   .botao-municipios {
+    padding: 8px 12px; 
+    border: 1px solid var(--cor-sul); 
+    border-radius: 8px;
+    background-color: var(--cor-cartao); 
+    color: var(--cor-sul);
+}
+}
+
+.estado-sigla { 
+   margin: 0; 
+   font-size: 24px; 
+   font-weight: bold; 
+   color: var(--cor-regiao); }
+.estado-nome { 
+   margin: 0 0 8px 0; font-size: 19px; }
+.estado-regiao { 
+   margin: 4px 0 0 0; font-size: 14px; 
+   font-weight: bold; color: var(--cor-regiao); }
+.estado-municipios { 
+   margin: 8px 0 0 0; min-height: 20px; 
+   color: var(--cor-suave); font-size: 14px; }
+.estado-municipios.erro { 
+   color: var(--cor-erro); 
+   font-weight: bold; }
+
+/* botões no pé do card */
+.estado-acoes { 
+   display: flex; justify-content: space-between; 
+   align-items: center; 
+   gap: 8px; 
+   margin-top: auto; 
+   padding-top: 12px; }
+.botao-municipios {
+    padding: 8px 12px; 
+    border: 1px solid var(--cor-borda); 
+    border-radius: 8px;
+    background-color: var(--cor-cartao); 
+    color: var(--cor-texto);
+}
+.botao-municipios:disabled { 
+   opacity: 0.5; 
+   cursor: default; 
+}
+.botao-favorito { 
+   border: none; 
+   background: none; 
+   font-size: 24px; 
+   color: var(--cor-suave); }
+.botao-favorito.favorito { 
+   color: var(--cor-favorito); }
+
+/* 5. Mensagem e esqueleto */
+.status { 
+   min-height: 24px; 
+   margin: 20px 0 12px 0; 
+   color: var(--cor-suave); 
+}
+.status.erro { 
+   color: var(--cor-erro); 
+   font-weight: bold; }
+.esqueleto {
+    border-color: var(--cor-esqueleto);
+    border-top-color: var(--cor-esqueleto);
+    background-color: var(--cor-esqueleto);
+    animation: piscar 1.2s ease-in-out infinite;
+}
+@keyframes piscar {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
