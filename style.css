@@ -14,6 +14,7 @@
     --cor-centro-oeste: #c2255c;
     --cor-sudeste: #1971c2;
     --cor-sul: #6741d9;
+    --sombra: 0 8px 20px rgba(31, 41, 51, 0.18);
 }
 * { box-sizing: border-box; }
 body {
@@ -22,34 +23,40 @@ body {
     font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: var(--cor-texto);
 }
-.topo { 
-   padding: 28px 20px; 
-   background-color: var(--cor-principal); 
-   color: #fff; text-align: center; }
-.topo h1 { 
-   margin: 0; f
-   ont-size: 32px; }
-.subtitulo { 
-   margin: 4px 0 0 0; 
-   opacity: 0.85; }
-.conteudo { 
-   max-width: 1100px; 
-   margin: 0 auto; 
-   padding: 20px; }
-.rodape { 
-   padding: 8px 20px 24px; 
-   color: var(--cor-suave); 
-   font-size: 14px; 
-   text-align: center; }
+.topo {
+    padding: 28px 20px;
+    background-color: var(--cor-principal);
+    color: #fff;
+    text-align: center;
+}
+.topo h1 {
+    margin: 0;
+    font-size: 32px;
+}
+.subtitulo {
+    margin: 4px 0 0 0;
+    opacity: 0.85;
+}
+.conteudo {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.rodape {
+    padding: 8px 20px 24px;
+    color: var(--cor-suave);
+    font-size: 14px;
+    text-align: center;
+}
 
 /* 2. Grades e filtros */
 .lista-de-estados {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
-    margin: 0; 
-    padding: 0; l
-   list-style: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 .filtros {
     display: grid;
@@ -59,162 +66,130 @@ body {
 .filtros p { margin: 0; }
 label { display: block; margin-bottom: 4px; font-weight: bold; }
 input, select {
-    width: 100%; padding: 10px 12px;
-    border: 1px solid var(--cor-borda); 
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--cor-borda);
     border-radius: 8px;
-    background-color: var(--cor-cartao); 
-    color: var(--cor-texto); font-size: 16px;
+    background-color: var(--cor-cartao);
+    color: var(--cor-texto);
+    font-size: 16px;
 }
 input:focus-visible, select:focus-visible, button:focus-visible {
-    outline: 3px solid var(--cor-principal); 
+    outline: 3px solid var(--cor-principal);
     outline-offset: 1px;
 }
 
 /* 3. Botões de região e favoritos */
-.barra { 
-   display: flex;
-   flex-wrap: wrap; 
-   justify-content: 
-   space-between; 
-   gap: 12px; 
-   margin-top: 20px; 
+.barra {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
 }
-.regioes { 
-   display: flex; 
-   flex-wrap: wrap; 
-   gap: 8px; 
+.regioes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
-button { 
-   font-size: 15px; 
-   cursor: pointer; 
+button {
+    font-size: 15px;
+    cursor: pointer;
 }
 .botao-regiao, .botao-favoritos {
     padding: 8px 14px;
-    border: 1px solid var(--cor-borda); 
+    border: 1px solid var(--cor-borda);
     border-radius: 999px;
-    background-color: var(--cor-cartao); 
+    background-color: var(--cor-cartao);
     color: var(--cor-texto);
 }
 .botao-regiao.ativo, .botao-favoritos.ativo {
-    background-color: var(--cor-principal); 
-    border-color: var(--cor-principal); 
+    background-color: var(--cor-principal);
+    border-color: var(--cor-principal);
     color: #fff;
 }
 
 /* 4. O card: a cor vem da variável --cor-regiao */
 .estado {
     --cor-regiao: var(--cor-principal);
-    display: flex; flex-direction: column;
-    min-height: 120px; padding: 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 120px;
+    padding: 16px;
     border: 1px solid var(--cor-borda);
     border-top: 6px solid var(--cor-regiao);
     border-radius: 10px;
     background-color: var(--cor-cartao);
 }
-.estado[data-regiao="Norte"] { 
-   --cor-regiao: var(--cor-norte);
-   .botao-municipios {
-    padding: 8px 12px; 
-    border: 1px solid var(--cor-norte); 
-    border-radius: 8px;
-    background-color: var(--cor-cartao); 
-    color: var(--cor-norte);
-}
- }
-.estado[data-regiao="Nordeste"] { 
-   --cor-regiao: var(--cor-nordeste);
-   .botao-municipios {
-    padding: 8px 12px; 
-    border: 1px solid var(--cor-nordeste); 
-    border-radius: 8px;
-    background-color: var(--cor-cartao); 
-    color: var(--cor-nordeste);
-}
- }
-.estado[data-regiao="Centro-Oeste"] { 
-   --cor-regiao: var(--cor-centro-oeste);
-   
-   .botao-municipios {
-    padding: 8px 12px; 
-    border: 1px solid var(--cor-centro-oeste); 
-    border-radius: 8px;
-    background-color: var(--cor-cartao); 
-    color: var(--cor-centro-oeste);
-}
- }
-.estado[data-regiao="Sudeste"] { 
-   --cor-regiao: var(--cor-sudeste);
-   .botao-municipios {
-    padding: 8px 12px; 
-    border: 1px solid var(--cor-sudeste); 
-    border-radius: 8px;
-    background-color: var(--cor-cartao); 
-    color: var(--cor-sudeste);
-}
-}
-.estado[data-regiao="Sul"] { 
-   --cor-regiao: var(--cor-sul); 
-   .botao-municipios {
-    padding: 8px 12px; 
-    border: 1px solid var(--cor-sul); 
-    border-radius: 8px;
-    background-color: var(--cor-cartao); 
-    color: var(--cor-sul);
-}
-}
+.estado[data-regiao="Norte"] { --cor-regiao: var(--cor-norte); }
+.estado[data-regiao="Nordeste"] { --cor-regiao: var(--cor-nordeste); }
+.estado[data-regiao="Centro-Oeste"] { --cor-regiao: var(--cor-centro-oeste); }
+.estado[data-regiao="Sudeste"] { --cor-regiao: var(--cor-sudeste); }
+.estado[data-regiao="Sul"] { --cor-regiao: var(--cor-sul); }
 
-.estado-sigla { 
-   margin: 0; 
-   font-size: 24px; 
-   font-weight: bold; 
-   color: var(--cor-regiao); }
-.estado-nome { 
-   margin: 0 0 8px 0; font-size: 19px; }
-.estado-regiao { 
-   margin: 4px 0 0 0; font-size: 14px; 
-   font-weight: bold; color: var(--cor-regiao); }
-.estado-municipios { 
-   margin: 8px 0 0 0; min-height: 20px; 
-   color: var(--cor-suave); font-size: 14px; }
-.estado-municipios.erro { 
-   color: var(--cor-erro); 
-   font-weight: bold; }
+.estado-sigla {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--cor-regiao);
+}
+.estado-nome { margin: 0 0 8px 0; font-size: 19px; }
+.estado-regiao {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--cor-regiao);
+}
+.estado-municipios {
+    margin: 8px 0 0 0;
+    min-height: 20px;
+    color: var(--cor-suave);
+    font-size: 14px;
+}
+.estado-municipios.erro {
+    color: var(--cor-erro);
+    font-weight: bold;
+}
 
 /* botões no pé do card */
-.estado-acoes { 
-   display: flex; justify-content: space-between; 
-   align-items: center; 
-   gap: 8px; 
-   margin-top: auto; 
-   padding-top: 12px; }
+.estado-acoes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 12px;
+}
+/* A cor vem de --cor-regiao: uma regra só serve para todas as regiões */
 .botao-municipios {
-    padding: 8px 12px; 
-    border: 1px solid var(--cor-borda); 
+    padding: 8px 12px;
+    border: 1px solid var(--cor-regiao);
     border-radius: 8px;
-    background-color: var(--cor-cartao); 
-    color: var(--cor-texto);
+    background-color: var(--cor-cartao);
+    color: var(--cor-regiao);
 }
-.botao-municipios:disabled { 
-   opacity: 0.5; 
-   cursor: default; 
+.botao-municipios:disabled {
+    opacity: 0.5;
+    cursor: default;
 }
-.botao-favorito { 
-   border: none; 
-   background: none; 
-   font-size: 24px; 
-   color: var(--cor-suave); }
-.botao-favorito.favorito { 
-   color: var(--cor-favorito); }
+.botao-favorito {
+    border: none;
+    background: none;
+    font-size: 24px;
+    color: var(--cor-suave);
+}
+.botao-favorito.favorito { color: var(--cor-favorito); }
 
 /* 5. Mensagem e esqueleto */
-.status { 
-   min-height: 24px; 
-   margin: 20px 0 12px 0; 
-   color: var(--cor-suave); 
+.status {
+    min-height: 24px;
+    margin: 20px 0 12px 0;
+    color: var(--cor-suave);
 }
-.status.erro { 
-   color: var(--cor-erro); 
-   font-weight: bold; }
+.status.erro {
+    color: var(--cor-erro);
+    font-weight: bold;
+}
 .esqueleto {
     border-color: var(--cor-esqueleto);
     border-top-color: var(--cor-esqueleto);
@@ -225,4 +200,200 @@ button {
     0% { opacity: 1; }
     50% { opacity: 0.4; }
     100% { opacity: 1; }
+}
+
+
+/* ===========================================================
+   ATIVIDADE: ANIMANDO OS ESTADOS
+   =========================================================== */
+
+/* ---------- Passo 1 — Os botões reagem ao mouse ---------- */
+
+/* A transition vai no estado NORMAL (sem :hover). Assim a cor
+   muda aos poucos na ida e também na volta. */
+.botao-regiao,
+.botao-favoritos,
+.botao-municipios {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* :not(.ativo) para não "apagar" o azul do botão escolhido */
+.botao-regiao:not(.ativo):hover,
+.botao-favoritos:not(.ativo):hover {
+    background-color: var(--cor-fundo);
+    border-color: var(--cor-principal);
+}
+
+/* Fundo na cor da região e texto branco (não vale se estiver desligado) */
+.botao-municipios:not(:disabled):hover {
+    background-color: var(--cor-regiao);
+    color: #fff;
+}
+
+.botao-favorito {
+    transition: transform 0.2s ease;
+}
+.botao-favorito:hover {
+    transform: scale(1.25);
+}
+
+/* ---------- Passo 2 — Os cards sobem ---------- */
+
+.estado {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+/* transform não empurra os vizinhos: ele não mexe no layout */
+.estado:not(.esqueleto):hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sombra);
+}
+
+/* ---------- Passo 3 — Os cards surgem ---------- */
+
+@keyframes surgir {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Atenção: "backwards" e não "both". Com "both", o card ficaria
+   preso no último quadro (translateY(0)) para sempre, e o
+   transform do :hover do Passo 2 nunca funcionaria.
+   Com "backwards", a animação só segura o PRIMEIRO quadro durante
+   o atraso, e depois solta o card. */
+.estado:not(.esqueleto) {
+    animation: surgir 0.4s ease-out backwards;
+}
+
+/* ---------- Passo 4 — O menu suspenso de regiões ---------- */
+
+.menu-regioes {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+}
+
+.menu-lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* O <li> é a referência do submenu (position: absolute) */
+.tem-submenu {
+    position: relative;
+}
+
+.menu-botao {
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    background: none;
+    color: #fff;
+}
+
+.submenu {
+    position: absolute;       /* por cima da página, sem empurrar nada */
+    top: 100%;                /* logo embaixo do botão, sem espaço no meio */
+    left: 0;
+    z-index: 10;
+    min-width: 180px;
+    margin: 0;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: var(--cor-cartao);
+    color: var(--cor-texto);
+    box-shadow: var(--sombra);
+    list-style: none;
+    text-align: left;
+
+    /* escondida */
+    opacity: 0;
+    visibility: hidden;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+/* O :hover está no <li> inteiro: o mouse pode andar pela lista sem
+   ela fechar. O :focus-within abre pelo teclado (Tab). */
+.tem-submenu:hover .submenu,
+.tem-submenu:focus-within .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: scaleY(1);
+}
+
+/* As opções: largura total e sem cara de botão */
+.opcao-regiao {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    transition: background-color 0.2s ease;
+}
+.opcao-regiao:hover {
+    background-color: var(--cor-fundo);
+}
+
+/* ---------- Passo 6 — O "Buscando..." pisca ---------- */
+
+/* A MESMA animação "piscar" do esqueleto. Quem põe e tira a classe
+   é o JavaScript. */
+.buscando {
+    animation: piscar 1.2s ease-in-out infinite;
+}
+
+/* ---------- Passo 7 — Sobre os dados ---------- */
+
+.sobre {
+    display: grid;
+    gap: 12px;
+    margin-top: 32px;
+}
+.sobre h2 {
+    margin: 0;
+}
+
+.duvida {
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    background-color: var(--cor-cartao);
+}
+.duvida summary {
+    padding: 16px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* [open] é um seletor de atributo, como o [data-regiao="Sul"] */
+.duvida[open] summary {
+    color: var(--cor-principal);
+}
+.duvida-resposta {
+    margin: 0;
+    padding: 0 20px 16px 20px;
+    color: var(--cor-suave);
+}
+/* Roda cada vez que a pergunta abre */
+.duvida[open] .duvida-resposta {
+    animation: surgir 0.3s ease-out;
+}
+
+/* Quem pede para reduzir movimento no sistema não vê as animações */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

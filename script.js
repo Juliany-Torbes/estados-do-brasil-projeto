@@ -102,6 +102,7 @@ const listaDeEstados = document.querySelector('.lista-de-estados');
 const telaStatus = document.querySelector('.status');
 const botaoFavoritos = document.querySelector('.botao-favoritos');
 const botoesRegiao = document.querySelectorAll('.botao-regiao');
+const opcoesRegiao = document.querySelectorAll('.opcao-regiao');   // as opções do menu suspenso
 
 function mostrarCarregando() {
     telaStatus.textContent = 'Carregando os estados...';
@@ -128,6 +129,26 @@ function mostrarContagem(quantidade) {
         telaStatus.textContent = '1 estado encontrado.';
     } else {
         telaStatus.textContent = `${quantidade} estados encontrados.`;
+    }
+}
+
+/* O "Quantos municípios?" de um card */
+async function mostrarMunicipios(estado, municipios, botaoMunicipios) {
+    municipios.classList.remove('erro');
+    municipios.classList.add('buscando');          // começa a piscar
+    municipios.textContent = 'Buscando...';
+    botaoMunicipios.disabled = true;
+    try {
+        const quantidade = await contarMunicipios(estado.sigla);
+        municipiosJaBuscados[estado.sigla] = quantidade;
+        municipios.textContent = `${quantidade} municípios`;
+    } catch (erro) {
+        municipios.classList.add('erro');
+        municipios.textContent = erro.message;
+    } finally {
+        // o finally roda nos DOIS casos: deu certo ou deu erro
+        municipios.classList.remove('buscando');   // para de piscar
+        botaoMunicipios.disabled = false;
     }
 }
 
@@ -170,19 +191,8 @@ function criarCard(estado) {
     botaoFavorito.textContent = ehFavorito ? '★' : '☆';
     botaoFavorito.classList.toggle('favorito', ehFavorito);
 
-    botaoMunicipios.addEventListener('click', async () => {
-        municipios.classList.remove('erro');
-        municipios.textContent = 'Buscando...';
-        botaoMunicipios.disabled = true;
-        try {
-            const quantidade = await contarMunicipios(estado.sigla);
-            municipiosJaBuscados[estado.sigla] = quantidade;
-            municipios.textContent = `${quantidade} municípios`;
-        } catch (erro) {
-            municipios.classList.add('erro');
-            municipios.textContent = erro.message;
-        }
-        botaoMunicipios.disabled = false;
+    botaoMunicipios.addEventListener('click', () => {
+        mostrarMunicipios(estado, municipios, botaoMunicipios);
     });
 
     botaoFavorito.addEventListener('click', () => {
@@ -243,6 +253,15 @@ botoesRegiao.forEach(botao => {
     botao.addEventListener('click', () => {
         regiaoEscolhida = botao.dataset.regiao;
         atualizarTela();
+    });
+});
+
+// Passo 5: a opção do menu faz o mesmo que o botão da região
+opcoesRegiao.forEach(opcao => {
+    opcao.addEventListener('click', () => {
+        regiaoEscolhida = opcao.dataset.regiao;
+        atualizarTela();
+        opcao.blur();   // tira o foco, para o :focus-within soltar e o menu fechar
     });
 });
 
